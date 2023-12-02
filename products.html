@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Product Listing</title>
+		<style>
+			.product {
+				margin-bottom: 20px;
+				padding: 10px;
+				border: 1px solid #ddd;
+			}
+			#cart-container {
+				display: none;
+				margin-top: 20px;
+				border: 1px solid #ddd;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Produkter</h1>
+		<div id="product-list"></div>
+		<button onclick="showCart()">Handlekurv</button>
+		<button onclick="window.location.href='/checkout'">
+			Fortsett til bestilling
+		</button>
+		<div id="cart-container"></div>
+		<script src="products.js"></script>
+	</body>
+</html>
