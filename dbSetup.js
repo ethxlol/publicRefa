@@ -74,19 +74,19 @@ db.connect((err) => {
 				//   ('jane_doe', 'jane@example.com', 'hashed_password', 'wholesale');`;
 
 				// Execute the queries to insert data
-				db.query(insertProducts, (err, result) => {
-					if (err) throw err;
-					console.log('Inserted sample products');
+				// db.query(insertProducts, (err, result) => {
+				// 	if (err) throw err;
+				// 	console.log('Inserted sample products');
 
-					db.query(insertUsers, (err, result) => {
-						if (err) throw err;
-						console.log('Inserted sample users');
+				// 	db.query(insertUsers, (err, result) => {
+				// 		if (err) throw err;
+				// 		console.log('Inserted sample users');
 
-						// Close the connection once all queries are done
-						db.end();
-					});
-				});
+				// Close the connection once all queries are done
+				db.end();
 			});
 		});
 	});
 });
+// 	});
+// });
