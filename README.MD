@@ -7,12 +7,16 @@ Welcome to the REFA e-commerce platform project repository. This project is desi
 Before you begin, ensure you have met the following requirements:
 
 - Node.js (Download and install from [Node.js official website](https://nodejs.org/))
+  PS: Make sure to select dropdowns corresponding to your environment and devices
 
 - MySQL (Download and install from [MySQL official website](https://dev.mysql.com/downloads/mysql/))
+  PS: Make sure to select dropdowns corresponding to your environment and devices
 
 - A text editor like Visual Studio Code (Download from [VS Code official website](https://code.visualstudio.com/))
+  PS: Make sure to select dropdowns corresponding to your environment and devices
 
 - MySQL Workbench (Download and install from [MySQL official website](https://dev.mysql.com/downloads/workbench/))
+  PS: Make sure to select dropdowns corresponding to your environment and devices
 
 ## Installation
 
