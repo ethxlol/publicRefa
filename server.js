@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
 	if (req.session.userId) {
 		res.redirect('/products-page');
 	} else {
-		res.sendFile(__dirname + '/index.html');
+		res.sendFile(__dirname + '/views/index.html');
 	}
 });
 
@@ -285,11 +285,11 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-	res.sendFile(__dirname + '/register.html');
+	res.sendFile(__dirname + '/views/register.html');
 });
 
 app.get('/login', (req, res) => {
-	res.sendFile(__dirname + '/login.html');
+	res.sendFile(__dirname + '/views/login.html');
 });
 
 app.get('/products', (req, res) => {
@@ -326,7 +326,7 @@ app.get('/products', (req, res) => {
 
 app.get('/products-page', (req, res) => {
 	if (req.session.userId) {
-		res.sendFile(__dirname + '/products.html');
+		res.sendFile(__dirname + '/views/products.html');
 	} else {
 		res.redirect('/login');
 	}
@@ -361,7 +361,7 @@ app.get('/cart-details', (req, res) => {
 
 app.get('/checkout', (req, res) => {
 	if (req.session.userId) {
-		res.sendFile(__dirname + '/checkout.html');
+		res.sendFile(__dirname + '/views/checkout.html');
 	} else {
 		res.redirect('/login'); // Redirect to login if not logged in
 	}
@@ -369,7 +369,7 @@ app.get('/checkout', (req, res) => {
 
 // Serve the order confirmation page
 app.get('/confirmation', (req, res) => {
-	res.sendFile(__dirname + '/confirmation.html');
+	res.sendFile(__dirname + '/views/confirmation.html');
 });
 
 const PORT = process.env.PORT || 3000;
