@@ -37,9 +37,9 @@ DB_USER=refa
 DB_PASS=refa1234
 DB_NAME=REFA
 DB_SECRET=refa1212
-EMAIL_USERNAME=refatest1@gmail.com
+EMAIL_USERNAME=refatest1@gmail.com (This is the transporter email)
 EMAIL_PASSWORD=rsjq vnze gfut kcvn (This is an app password from google connected to a gmail account, this is to be able to use the Oauht2)
-ADMIN_EMAIL=refatest1@gmail.com
+ADMIN_EMAIL=refatest1@gmail.com (this is the email that will recieve the order pick list at the same time the user gets the confirmation email)
 
 ## Usage
 
