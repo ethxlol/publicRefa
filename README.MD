@@ -118,9 +118,7 @@ The images should be appended directly in the server with a url.
 
 sql:
 
-UPDATE products
-SET image_url = 'http://example.com/path/to/image.jpg'
-WHERE id = [product_id]
+INSERT INTO `dbName`.`products` (`id`, `name`, `description`, `price`, `quantity`, `image_url`) VALUES ('1', 'testProdukt', 'Dette er et produkt', '99.99', '100', 'url/to/img');
 
 The products should have:
 id
