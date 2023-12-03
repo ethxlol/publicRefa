@@ -1,0 +1,38 @@
+<%- include('partials/header', { title: 'Product Listing' }) %>
+<%- include('partials/navigation') %>
+
+<style>
+    .product {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+    #cart-container {
+        display: none;
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+</style>
+
+<h1>Produkter</h1>
+<div id="product-list"></div>
+<button onclick="showCart()">Handlekurv</button>
+<div id="add-to-cart-message" style="display: none">Item added to cart!</div>
+<button onclick="window.location.href='/checkout'">Fortsett til bestilling</button>
+<div id="cart-container"></div>
+<script src="products.js"></script>
+
+
+<script>
+    fetch('/current-user')
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.username) {
+                document.getElementById('currentUser').innerText += data.username;
+            }
+        })
+        .catch((error) => console.error('Error:', error));
+</script>
+</body>
+</html>

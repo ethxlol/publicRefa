@@ -6,6 +6,9 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const app = express();
 
+app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, '/views'));
+
 app.use(express.static('public'));
 app.use(
 	session({
@@ -61,7 +64,7 @@ app.get('/', (req, res) => {
 	if (req.session.userId) {
 		res.redirect('/products-page');
 	} else {
-		res.sendFile(__dirname + '/views/index.html');
+		res.render('index');
 	}
 });
 
@@ -296,11 +299,11 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-	res.sendFile(__dirname + '/views/register.html');
+	res.render('register');
 });
 
 app.get('/login', (req, res) => {
-	res.sendFile(__dirname + '/views/login.html');
+	res.render('login');
 });
 
 // Showing user logged in at the top of each page query
@@ -358,7 +361,7 @@ app.get('/products', (req, res) => {
 
 app.get('/products-page', (req, res) => {
 	if (req.session.userId) {
-		res.sendFile(__dirname + '/views/products.html');
+		res.render('products');
 	} else {
 		res.redirect('/login');
 	}
@@ -393,7 +396,7 @@ app.get('/cart-details', (req, res) => {
 
 app.get('/checkout', (req, res) => {
 	if (req.session.userId) {
-		res.sendFile(__dirname + '/views/checkout.html');
+		res.render('checkout');
 	} else {
 		res.redirect('/login'); // Redirect to login if not logged in
 	}
@@ -401,7 +404,7 @@ app.get('/checkout', (req, res) => {
 
 // Serve the order confirmation page
 app.get('/confirmation', (req, res) => {
-	res.sendFile(__dirname + '/views/confirmation.html');
+	res.render('confirmation');
 });
 
 const PORT = process.env.PORT || 3000;
