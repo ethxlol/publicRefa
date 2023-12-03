@@ -1,20 +1,20 @@
 {
-  "name": "refa",
-  "version": "1.0.0",
-  "description": "test",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "googleapis": "^129.0.0",
-    "mysql": "^2.18.1",
-    "nodemailer": "^6.9.7"
-  }
+	"name": "refa(BETA)",
+	"version": "1.0.0",
+	"description": "test",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt": "^5.1.1",
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"express-session": "^1.17.3",
+		"googleapis": "^129.0.0",
+		"mysql": "^2.18.1",
+		"nodemailer": "^6.9.7"
+	}
 }
