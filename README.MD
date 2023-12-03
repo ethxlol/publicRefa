@@ -1,4 +1,4 @@
-# REFA E-commerce Platform
+# REFA E-commerce Platform (BETA)
 
 Welcome to the REFA e-commerce platform project repository. This project is designed to provide a seamless online shopping experience for professional clientele, complete with user authentication, product listings, a shopping cart, and order processing.
 
