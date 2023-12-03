@@ -66,15 +66,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-	const { username, email, password } = req.body;
-	if (!username || !email || !password) {
+	const { username, email, password, delivery_address } = req.body;
+	if (!username || !email || !password || !delivery_address) {
 		return res.status(400).send('Invalid input');
 	}
 	try {
 		const hashedPassword = await bcrypt.hash(password, 10);
 		db.query(
-			'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-			[username, email, hashedPassword],
+			'INSERT INTO users (username, email, password, delivery_address) VALUES (?, ?, ?, ?)',
+			[username, email, hashedPassword, delivery_address],
 			(err, result) => {
 				if (err) {
 					console.error(err);

@@ -80,6 +80,7 @@ email
 password
 created_at
 user_type
+delivery_address
 
 2. Appending the type_prices:
 
