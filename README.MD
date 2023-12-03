@@ -40,13 +40,20 @@ npm install
 
 1. Create the .env in the root of the project:
 
-DB_HOST=localhost <br/ >
-DB_USER=your_username_here <br/ >
-DB_PASS=your_password_here <br/ >
-DB_NAME=database_name_here <br/ >
-DB_SECRET=secret_here <br/ >
-EMAIL_USERNAME=your_transporter_here@gmail.com (This is the transporter email) <br/ >
-EMAIL_PASSWORD=app pass here ! (This is an app password from google connected to a gmail account, this is to be able to use the Oauht2) <br/ >
+DB_HOST=localhost
+
+DB_USER=your_username_here
+
+DB_PASS=your_password_here
+
+DB_NAME=database_name_here
+
+DB_SECRET=secret_here
+
+EMAIL_USERNAME=your_transporter_here@gmail.com (This is the transporter email)
+
+EMAIL_PASSWORD=app pass here ! (This is an app password from google connected to a gmail account, this is to be able to use the Oauht2)
+
 ADMIN_EMAIL=admin_emil@gmail.com (this is the email that will recieve the order pick list at the same time the user gets the confirmation email)
 
 ## Usage
