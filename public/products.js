@@ -72,7 +72,6 @@ function addToCart(productId, quantity) {
 		.then((data) => {
 			console.log(data);
 			showAddToCartMessage();
-			// Optional: Update cart display or quantity in real-time here
 		})
 		.catch((error) => {
 			console.error('Error:', error);
