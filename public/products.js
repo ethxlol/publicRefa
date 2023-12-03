@@ -4,21 +4,52 @@ document.addEventListener('DOMContentLoaded', function () {
 		.then((products) => {
 			const productList = document.getElementById('product-list');
 			products.forEach((product) => {
+				const imageUrl = product.image_url || 'path/to/default/image.jpg'; // Fallback to default image if image_url is not present
 				const productElement = document.createElement('div');
 				productElement.className = 'product';
 				productElement.innerHTML = `
-									<h3>${product.name}</h3>
-									<p>${product.description}</p>
-									<p>Pris: $${product.price.toFixed(2)}</p>
-									<label for="quantity_${product.id}">Antall:</label>
-									<input type="number" id="quantity_${product.id}" value="1" min="1">
-									<button onclick="handleAddToCart(${product.id})">Legg til</button>
-							`;
+				<style>
+				.thumbnail {
+					width: 100px; /* Set your desired width */
+					height: auto; /* Maintain aspect ratio */
+					border: 1px solid #ddd; /* Optional: adds a light border around the image */
+					border-radius: 4px; /* Optional: rounds the corners of the image */
+					padding: 5px; /* Adds some spacing around the image */
+					margin-right: 10px; /* Increases spacing to the right of the image */
+					display: inline-block; /* This makes the image align with the text */
+					vertical-align: top; /* Aligns the image to the top of the text */
+					transition: transform 0.3s ease; /* Smooth transition for the transform */
+				}
+				
+				.thumbnail:hover {
+					transform: scale(2); /* Doubles the size of the image */
+					z-index: 10; /* Ensures the image is above other elements while scaling */
+				}
+				</style>
+				<img src="${imageUrl}" alt="${product.name}" class="thumbnail" />
+				<h3>${product.name}</h3>
+				<p>${product.description}</p>
+				<p>Price: $${product.price.toFixed(2)}</p>
+				<label for="quantity_${product.id}">Quantity:</label>
+				<input type="number" id="quantity_${product.id}" value="1" min="1">
+				<button onclick="handleAddToCart(${product.id})">Add to Cart</button>
+				`;
 				productList.appendChild(productElement);
+				console.log(product); // Debug: Log the product object to see if image_url is present
 			});
 		})
 		.catch((error) => console.error('Error:', error));
 });
+
+function showAddToCartMessage() {
+	const messageDiv = document.getElementById('add-to-cart-message');
+	messageDiv.style.display = 'block';
+
+	// Hide the message after 3 seconds
+	setTimeout(() => {
+		messageDiv.style.display = 'none';
+	}, 3000);
+}
 
 function handleAddToCart(productId) {
 	const quantityInput = document.getElementById(`quantity_${productId}`);
@@ -40,7 +71,7 @@ function addToCart(productId, quantity) {
 		.then((response) => response.text())
 		.then((data) => {
 			console.log(data);
-			alert('Product added to cart!');
+			showAddToCartMessage();
 			// Optional: Update cart display or quantity in real-time here
 		})
 		.catch((error) => {

@@ -30,6 +30,16 @@ function updateCheckoutCart() {
 		.catch((error) => console.error('Error:', error));
 }
 
+function showCartUpdateMessage() {
+	const messageDiv = document.getElementById('cart-update-message');
+	messageDiv.style.display = 'block';
+
+	// Hide the message after 3 seconds
+	setTimeout(() => {
+		messageDiv.style.display = 'none';
+	}, 3000);
+}
+
 function updateCartItemQuantity(input) {
 	const productId = input.getAttribute('data-product-id');
 	const newQuantity = input.value;
@@ -46,6 +56,8 @@ function updateCartItemQuantity(input) {
 		.then((response) => response.text())
 		.then((data) => {
 			console.log(data);
+			// message to confirm user of updated cart
+			showCartUpdateMessage();
 			updateCheckoutCart();
 		})
 		.catch((error) => console.error('Error:', error));
@@ -62,6 +74,8 @@ function removeItemFromCart(productId) {
 		.then((response) => response.text())
 		.then((data) => {
 			console.log(data);
+			// message to confirm user of updated cart
+			showCartUpdateMessage();
 			updateCheckoutCart();
 		})
 		.catch((error) => console.error('Error:', error));

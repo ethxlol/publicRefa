@@ -24,7 +24,8 @@ db.connect((err) => {
       name VARCHAR(100) NOT NULL,
       description TEXT,
       price DECIMAL(10, 2) NOT NULL,
-      quantity INT NOT NULL
+      quantity INT NOT NULL,
+			image_url VARCHAR(255)
     );`;
 
 	// SQL for creating 'type_prices' table
@@ -45,7 +46,8 @@ db.connect((err) => {
       email VARCHAR(50) NOT NULL UNIQUE,
       password VARCHAR(255) NOT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      user_type ENUM('retail', 'wholesale', 'bigclient') DEFAULT 'retail'
+      user_type ENUM('retail', 'wholesale', 'bigclient') DEFAULT 'retail',
+			delivery_address VARCHAR(255) NOT NULL
     );`;
 
 	// Execute the queries to create tables

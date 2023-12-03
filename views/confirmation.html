@@ -7,11 +7,22 @@
 		<!-- Add any stylesheets or scripts you need here -->
 	</head>
 	<body>
+		<div id="currentUser">Currently logged in as:<br /></div>
 		<h1>Thank you for your order!</h1>
 		<p>
 			Your order has been placed successfully and a confirmation email has been
 			sent to you.
 		</p>
 		<a href="/">Return to Homepage</a>
+		<script>
+			fetch('/current-user')
+				.then((response) => response.json())
+				.then((data) => {
+					if (data.username) {
+						document.getElementById('currentUser').innerText += data.username;
+					}
+				})
+				.catch((error) => console.error('Error:', error));
+		</script>
 	</body>
 </html>

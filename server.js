@@ -120,6 +120,16 @@ app.post('/login', async (req, res) => {
 	}
 });
 
+app.post('/logout', (req, res) => {
+	req.session.destroy((err) => {
+		if (err) {
+			console.error('Logout error: ', err);
+			return res.status(500).send('Error while logging out');
+		}
+		res.redirect('/login'); // Redirect to the login page or home page
+	});
+});
+
 app.post('/add-to-cart', (req, res) => {
 	const { productId, quantity } = req.body;
 	if (!req.session.cart) {
@@ -180,7 +190,7 @@ app.post('/checkout', (req, res) => {
 
 	// Fetch the user's email and username from the database
 	db.query(
-		'SELECT email, username FROM users WHERE id = ?',
+		'SELECT email, username, delivery_address FROM users WHERE id = ?',
 		[req.session.userId],
 		(err, userResults) => {
 			if (err) {
@@ -190,7 +200,7 @@ app.post('/checkout', (req, res) => {
 			if (userResults.length === 0) {
 				return res.status(404).send('User not found');
 			}
-
+			const userDeliveryAddress = userResults[0].delivery_address;
 			const userEmail = userResults[0].email;
 			const userName = userResults[0].username;
 			const userId = req.session.userId;
@@ -199,7 +209,7 @@ app.post('/checkout', (req, res) => {
 			// Fetch the details of the products in the cart
 			const productIds = req.session.cart.map((item) => item.productId);
 			const placeholders = productIds.map(() => '?').join(',');
-			const productDetailsQuery = `SELECT id, name, price FROM products WHERE id IN (${placeholders})`;
+			const productDetailsQuery = `SELECT id, name, price, image_url FROM products WHERE id IN (${placeholders})`;
 
 			db.query(productDetailsQuery, productIds, (err, products) => {
 				if (err) {
@@ -211,6 +221,7 @@ app.post('/checkout', (req, res) => {
 				emailMessageHtml += `<p>User ID: ${userId}</p>`;
 				emailMessageHtml += `<p>User Name: ${userName}</p>`;
 				emailMessageHtml += `<p>Order Date & Time: ${orderDateTime}</p>`;
+				emailMessageHtml += `<p>Delivery Address: ${userDeliveryAddress}</p>`;
 				emailMessageHtml += `<ul>`;
 
 				let total = 0;
@@ -292,6 +303,27 @@ app.get('/login', (req, res) => {
 	res.sendFile(__dirname + '/views/login.html');
 });
 
+// Showing user logged in at the top of each page query
+app.get('/current-user', (req, res) => {
+	if (req.session.userId) {
+		db.query(
+			'SELECT username FROM users WHERE id = ?',
+			[req.session.userId],
+			(err, results) => {
+				if (err) {
+					console.error('Error fetching user: ', err);
+					return res.status(500).send('Internal Server Error');
+				}
+				if (results.length > 0) {
+					return res.json({ username: results[0].username });
+				}
+			}
+		);
+	} else {
+		res.status(401).send('Not logged in');
+	}
+});
+
 app.get('/products', (req, res) => {
 	if (!req.session.userId) {
 		return res.status(401).send('Please log in to view products');
@@ -307,7 +339,7 @@ app.get('/products', (req, res) => {
 		}
 		const userType = userTypeResults[0].user_type;
 		const userSpecificPriceQuery = `
-            SELECT p.id, p.name, p.description, p.quantity, 
+            SELECT p.id, p.name, p.description, p.quantity, p.image_url,
                    COALESCE(tp.price, p.price) AS price
             FROM products p
             LEFT JOIN type_prices tp ON p.id = tp.product_id AND tp.user_type = ?
@@ -341,7 +373,7 @@ app.get('/cart-details', (req, res) => {
 		return res.json([]);
 	}
 	const placeholders = productIds.map(() => '?').join(',');
-	const productDetailsQuery = `SELECT id, name, price FROM products WHERE id IN (${placeholders})`;
+	const productDetailsQuery = `SELECT id, name, description, price, quantity, image_url FROM products WHERE id IN (${placeholders})`;
 	db.query(productDetailsQuery, productIds, (err, products) => {
 		if (err) {
 			console.error('Error fetching product details: ', err);

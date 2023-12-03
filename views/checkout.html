@@ -6,9 +6,24 @@
 		<title>Checkout</title>
 	</head>
 	<body>
+		<div id="currentUser">Currently logged in as:<br /></div>
+		<form action="/logout" method="post" id="logout-form">
+			<button type="submit">Logout</button>
+		</form>
 		<h1>Ferdigstill ordre</h1>
 		<div id="checkout-cart-container"></div>
+		<div id="cart-update-message" style="display: none">Cart updated!</div>
 		<button onclick="submitOrder()">Send Ordre</button>
 		<script src="checkout.js"></script>
+		<script>
+			fetch('/current-user')
+				.then((response) => response.json())
+				.then((data) => {
+					if (data.username) {
+						document.getElementById('currentUser').innerText += data.username;
+					}
+				})
+				.catch((error) => console.error('Error:', error));
+		</script>
 	</body>
 </html>

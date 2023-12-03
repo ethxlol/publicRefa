@@ -103,3 +103,4 @@ name
 description
 price
 quantity
+image_url

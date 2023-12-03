@@ -19,13 +19,30 @@
 		</style>
 	</head>
 	<body>
+		<div id="currentUser">Currently logged in as:<br /></div>
+		<form action="/logout" method="post" id="logout-form">
+			<button type="submit">Logout</button>
+		</form>
 		<h1>Produkter</h1>
 		<div id="product-list"></div>
 		<button onclick="showCart()">Handlekurv</button>
+		<div id="add-to-cart-message" style="display: none">
+			Item added to cart!
+		</div>
 		<button onclick="window.location.href='/checkout'">
 			Fortsett til bestilling
 		</button>
 		<div id="cart-container"></div>
 		<script src="products.js"></script>
+		<script>
+			fetch('/current-user')
+				.then((response) => response.json())
+				.then((data) => {
+					if (data.username) {
+						document.getElementById('currentUser').innerText += data.username;
+					}
+				})
+				.catch((error) => console.error('Error:', error));
+		</script>
 	</body>
 </html>
