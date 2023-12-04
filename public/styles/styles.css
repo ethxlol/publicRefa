@@ -1,0 +1,161 @@
+/* Reset some default styles */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	margin-bottom: 2rem;
+}
+
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: #f4f4f4;
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh; /* Use height instead of min-height */
+	margin: 0; /* Ensure there's no margin on the body */
+	padding: 0; /* Ensure there's no padding on the body */
+}
+
+.login-container {
+	display: flex;
+	flex-direction: column; /* Stack children vertically */
+	align-items: center; /* Center children horizontally */
+	justify-content: center; /* Center children vertically */
+	height: 100vh; /* Take up the full height of the viewport */
+	text-align: center; /* Center text for all child elements */
+}
+
+/* Headings and text */
+h1,
+h2 {
+	color: #007bff;
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+/* Centered container for content */
+/* .centered-container {
+	margin-top: 50px; 
+} */
+
+/* Form and input styles */
+form,
+.auth-form {
+	background: none;
+	padding: 0;
+	border-radius: 5px;
+	box-shadow: none;
+	width: 100%;
+	max-width: 400px;
+	/* Remove any margin that may be adding extra space */
+	margin-top: -50px; /* Pull the form up towards the h2 */
+	margin-bottom: 0;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'] {
+	width: 100%;
+	padding: 0.5rem;
+	margin-bottom: 1rem; /* Space between inputs */
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+/* Button styles */
+button,
+.button {
+	display: inline-block; /* Allows setting padding and margins */
+	padding: 10px 20px;
+	margin-bottom: 1rem; /* Space between buttons */
+	border: 1px solid #b3e5fc;
+	border-radius: 5px; /* Rounded corners */
+	background-color: #e1f5fe; /* Blue background */
+	color: #8cd9fd;
+	font-size: 1rem;
+	/* font-weight: bold; */
+	text-decoration: none; /* Remove underline from anchors */
+	cursor: pointer;
+	outline: none;
+	/* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); */
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover,
+.button:hover {
+	background-color: #0056b3; /* Darker blue on hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+/* Styles specific to auth-buttons container */
+.auth-buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Specific style for last button to remove bottom margin */
+.auth-buttons button:last-child,
+.auth-buttons .button:last-child {
+	margin-bottom: 0;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+	.auth-buttons,
+	.button {
+		width: 90%; /* Full width buttons on small screens */
+	}
+
+	.button {
+		margin: 10px auto; /* Center buttons with automatic horizontal margins */
+	}
+}
+
+/* Navigation styles */
+#currentUser {
+	text-align: center;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#logout-button {
+	display: block; /* Allows the button to occupy its own line */
+	width: auto; /* Or you can specify a width if you want */
+	margin: 10px auto; /* Centers the button and adds spacing */
+	padding: 10px 20px; /* Good padding for button size */
+	background-color: #007bff; /* Consistent blue color */
+	color: white; /* Text color */
+	border: none; /* Removes the border */
+	border-radius: 20px; /* Rounded corners like other buttons */
+	box-shadow: none; /* Removes any box-shadow if it was previously added */
+	cursor: pointer;
+	font-size: 1rem; /* Matches the font size of other buttons */
+	font-weight: bold; /* Bold text */
+	transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+#logout-button:hover {
+	background-color: #0056b3; /* Darker shade on hover for interactivity */
+}
+
+#logout-form {
+	background: none; /* Removes any background color or image */
+	border: none; /* Removes any border */
+	padding: 0; /* Resets any padding */
+	box-shadow: none; /* Removes any shadow effects */
+}
+
+#reg-form {
+	background: none;
+	border: none;
+	padding: 0;
+	box-shadow: none;
+}
