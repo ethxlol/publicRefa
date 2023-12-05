@@ -1,6 +1,6 @@
 require('dotenv').config(); // Load environment variables from .env file
 
-const mysql = require('mysql'); // MySQL client for Node.js
+const mysql = require('mysql2'); // MySQL client for Node.js
 const express = require('express'); // Express framework for Node.js
 const bcrypt = require('bcrypt'); // Library for hashing passwords
 const session = require('express-session'); // Session middleware for Express
