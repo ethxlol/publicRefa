@@ -248,11 +248,13 @@ app.post('/checkout', (req, res) => {
 				let total = 0;
 				req.session.cart.forEach((cartItem) => {
 					const product = products.find((p) => p.id === cartItem.productId);
-					const lineTotal = cartItem.quantity * (product ? product.price : 0);
+					const productPrice = parseFloat(product ? product.price : 0);
+					const lineTotal = cartItem.quantity * productPrice;
 					total += lineTotal;
+
 					emailMessageHtml += `<li>${
 						product ? product.name : 'Unknown Product'
-					} - $${product ? product.price.toFixed(2) : '0.00'} x ${
+					} - $${productPrice.toFixed(2)} x ${
 						cartItem.quantity
 					} = $${lineTotal.toFixed(2)}</li>`;
 				});

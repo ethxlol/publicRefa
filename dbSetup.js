@@ -64,31 +64,32 @@ db.connect((err) => {
 				console.log('Users table created');
 
 				// Optionally insert some initial data into 'products' table
-				// const insertProducts = `
-				//   INSERT INTO products (name, description, price, quantity) VALUES
-				//   ('Sample Product 1', 'Description for product 1', 19.99, 100),
-				//   ('Sample Product 2', 'Description for product 2', 29.99, 150);`;
+				const insertProducts = `
+				  INSERT INTO products (name, description, price, quantity) VALUES
+				  ('Sample Product 1', 'Description for product 1', 19.99, 100),
+				  ('Sample Product 2', 'Description for product 2', 29.99, 150);`;
 
 				// Optionally insert some initial data into 'users' table
-				// const insertUsers = `
-				//   INSERT INTO users (username, email, password, user_type) VALUES
-				//   ('john_doe', 'john@example.com', 'hashed_password', 'retail'),
-				//   ('jane_doe', 'jane@example.com', 'hashed_password', 'wholesale');`;
+				const insertUsers = `
+				  INSERT INTO users (username, email, password, user_type, delivery_address) VALUES
+				  ('john_doe', 'john@example.com', 'hashed_password', 'retail', '123 Main St, Anytown, USA'),
+				  
+				  ('jane_doe', 'jane@example.com', 'hashed_password', 'wholesale', '123123 str africa');`;
 
 				// Execute the queries to insert data
-				// db.query(insertProducts, (err, result) => {
-				// 	if (err) throw err;
-				// 	console.log('Inserted sample products');
+				db.query(insertProducts, (err, result) => {
+					if (err) throw err;
+					console.log('Inserted sample products');
 
-				// 	db.query(insertUsers, (err, result) => {
-				// 		if (err) throw err;
-				// 		console.log('Inserted sample users');
+					db.query(insertUsers, (err, result) => {
+						if (err) throw err;
+						console.log('Inserted sample users');
 
-				// Close the connection once all queries are done
-				db.end();
+						// Close the connection once all queries are done
+						db.end();
+					});
+				});
 			});
 		});
 	});
 });
-// 	});
-// });

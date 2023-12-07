@@ -12,18 +12,15 @@ function updateCheckoutCart() {
 			checkoutCartContainer.innerHTML = '';
 
 			cartItems.forEach((item) => {
+				const price = parseFloat(item.price);
+				const formattedPrice = isNaN(price) ? 'N/A' : price.toFixed(2); // Format price or set to 'N/A' if not a number
+
 				const itemElement = document.createElement('div');
 				itemElement.innerHTML = `
-                  <p>${item.name} - $${item.price.toFixed(2)}</p>
-                  <input type="number" value="${
-										item.quantity
-									}" min="1" data-product-id="${
-					item.productId
-				}" onchange="updateCartItemQuantity(this)">
-                  <button onclick="removeItemFromCart(${
-										item.productId
-									})">X</button>
-              `;
+									<p>${item.name} - $${formattedPrice}</p>
+									<input type="number" value="${item.quantity}" min="1" data-product-id="${item.productId}" onchange="updateCartItemQuantity(this)">
+									<button onclick="removeItemFromCart(${item.productId})">X</button>
+							`;
 				checkoutCartContainer.appendChild(itemElement);
 			});
 		})
